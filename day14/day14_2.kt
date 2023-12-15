@@ -63,30 +63,6 @@ fun cycle(
     roll_east(bolders, destination_grid_east)
 }
 
-fun print_rocks(
-        rocks: Set<Pair<Int, Int>>,
-        cubes: Set<Pair<Int, Int>>,
-        max_x: Int,
-        max_y: Int,
-        lines: List<String>
-) {
-    for (y in 0 ..< max_y) {
-        for (x in 0 ..< max_x) {
-            var pos = Pair(x, y)
-            if (pos in rocks && lines[y][x] == '#') {
-                print("X")
-            } else if (pos in rocks) {
-                print("O")
-            } else if (lines[y][x] == '#') {
-                print("#")
-            } else {
-                print(".")
-            }
-        }
-        println()
-    }
-}
-
 fun main() {
     var lines = File("input.txt").readLines()
     var cubes_x = List<TreeSet<Int>>(lines.size) { TreeSet<Int>() }
@@ -169,10 +145,10 @@ fun main() {
         }
     }
 
-    for (i in 1..1_000_000_000) {
-        if (i % 1_000 == 0) {
-            println(i)
-        }
+    var sets = HashSet<Set<Pair<Int, Int>>>()
+    sets.add(positions.toSet())
+
+    for (i in 1..208) {
         cycle(
                 positions,
                 destination_grid_north,
