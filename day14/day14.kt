@@ -123,10 +123,10 @@ fun main() {
 
     var new_rocks = rocks.toSet()
 
-    println(roll_north(new_rocks, cubes).fold(0) { a, b -> a + lines.size - b.second })
+    // println(roll_north(new_rocks, cubes).fold(0) { a, b -> a + lines.size - b.second })
 
     for (i in 0 ..< 1000_000_000) {
-        if (i % 1000_000 == 0) {
+        if (i % 1000 == 0) {
             println(i)
         }
         new_rocks = cycle(new_rocks, cubes, lines[0].length, lines.size)
